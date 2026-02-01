@@ -1,0 +1,44 @@
+## 数据导入
+#创建模拟文件，并保存为.csv格式，注意：当文件中出现中文字符，需要保存为UTF-8.csv格
+#相对路径：就是已经在项目中，然后项目距离文件差的部分：数据\data_test_day4.csv
+### 读取和写出CSV数据方法
+read.csv("D:/R_study/R_stst_day04.csv") #常见
+read.csv("D:\\R_study\\R_stst_day04.csv") #不常见，但也可以
+BC_data <- read.csv("D:/R_study/data/R_stst_day04.csv") #绝对路径
+BC_data <- read.csv("data/R_stst_day04.csv") #建立在把项目创建在D:/R_study下，即相对路径
+setwd("D:/R_study/data") #先把工作路径定义好，然后直接读取文件即可
+BC_data <- read.csv("R_stst_day04.csv") #必须已经在工作路径下，不能间隔文件夹
+write.csv("D:/R_study/R_stst_day04_1.csv")
+
+## 数学运算
+### 加减乘除及乘方
+# 元素
+11 + 3
+11 - 3
+11 / 3
+11 * 3
+11 ^ 3
+
+# 向量
+c(1, 2, 3, 4, 5) + 5
+c(1, 2, 3, 4, 5) + c(1, 2, 3, 4, 5) 
+
+### 函数
+abc(-70) #绝对值
+aqrt(4) #平方根
+log(100) #对数
+exp(7) #e的7次方
+
+## 缺失值
+#检查原始数据是否有缺失值
+A <- c(1, 2, 3, NA, 4, 5) #NA缺失值
+
+## 案例1 计算BMI值
+data_BC_BMI <- read.csv("data/R_stst_day04.csv", rownames =1) #默认第一列作为列名
+data_BC_BMI["P007", ] #查看P007这一行
+data_BC_BMI$W #读取了W列
+data_BC_BMI$H #读取了H列
+BMI <- data_BC_BMI$W / data_BC_BMI$H ^ 2
+data_BC_BMI <- data.frame(data_BC_BMI, BMI) #将计算完成的BMI赋值到之前的表中
+write.csv("data/R_stst_day04_BMI_appened.csv") #写出到文件中，也可以用绝对路径
+```
